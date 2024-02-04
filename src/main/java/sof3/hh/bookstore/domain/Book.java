@@ -1,4 +1,4 @@
-package domain;
+package sof3.hh.bookstore.domain;
 
 public class Book {
 

@@ -57,5 +57,13 @@ public class BookController {
         return "redirect:/booklist";    // booklist.html
     }
 
+    // muutetaan kirjan tietoja
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public String editBook(@PathVariable("id") Integer bookid, Model model) {
+        // muutetaan yhden kirjan tietoja tietokannassa
+        model.addAttribute("book", bookRepository.findById(bookid));
+        return "editbook"; //   editbook.html
+    }
+
 
 }

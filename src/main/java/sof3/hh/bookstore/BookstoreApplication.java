@@ -19,8 +19,8 @@ public class BookstoreApplication {
 	public CommandLineRunner demo(BookRepository bookRepository) {
 		return (args) -> {
 
-			Book book1 = new Book("title", "author", 1999, 1, 23);
-			Book book2 = new Book("title", "author", 1999, 2, 47);
+			Book book1 = new Book("Täydellinen Titteli", "Tekijämies", 2017, 1, 23);
+			Book book2 = new Book("Konttorikriisi", "Kirjasalo", 1989, 2, 47);
 
 			bookRepository.save(book1);
 			bookRepository.save(book2);

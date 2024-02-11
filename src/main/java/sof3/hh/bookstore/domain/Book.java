@@ -62,6 +62,9 @@ public class Book {
     }
 
     //getterit
+    public Integer getId(){
+        return id;
+    }
     public String getTitle() {
         return title;
     }

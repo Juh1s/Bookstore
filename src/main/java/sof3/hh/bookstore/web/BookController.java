@@ -52,14 +52,14 @@ public class BookController {
 
     // poistetaan valittu kirja listasta
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-    public String deleteBook(@PathVariable("id") Integer bookid) {
+    public String deleteBook(@PathVariable("id") Long bookid) {
         bookRepository.deleteById(bookid);
         return "redirect:/booklist";    // booklist.html
     }
 
     // muutetaan kirjan tietoja
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-    public String editBook(@PathVariable("id") Integer bookid, Model model) {
+    public String editBook(@PathVariable("id") Long bookid, Model model) {
         // muutetaan yhden kirjan tietoja tietokannassa
         model.addAttribute("book", bookRepository.findById(bookid));
         return "editbook"; //   editbook.html

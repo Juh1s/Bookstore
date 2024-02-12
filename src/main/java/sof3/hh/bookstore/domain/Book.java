@@ -15,7 +15,7 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column (name = "bookid")
-    private Integer id;
+    private Long id;
     private String title;
     private String author;
     private Integer publicationYear;
@@ -45,7 +45,7 @@ public class Book {
     }
 
     //setterit
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
     public void setTitle(String title) {
@@ -65,7 +65,7 @@ public class Book {
     }
 
     //getterit
-    public Integer getId(){
+    public Long getId(){
         return id;
     }
     public String getTitle() {

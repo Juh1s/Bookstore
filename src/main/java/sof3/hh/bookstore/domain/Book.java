@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -21,6 +23,11 @@ public class Book {
     private Integer publicationYear;
     private Integer isbn;
     private Integer price;
+
+    @ManyToOne		// Student ManyToOne Department
+	@JoinColumn(name = "categoryid")	// FK
+    private Category category;
+
     //konstruktorit
     // parametrillinen konstruktori
     public Book(
@@ -28,12 +35,14 @@ public class Book {
         String author,
         Integer publicationYear,
         Integer isbn,
-        Integer price) {
+        Integer price,
+        Category category) {
         this.title = title;
         this.author = author;
         this.publicationYear = publicationYear;
         this.isbn = isbn;
         this.price = price;
+        this.category = category;
     }
     // parametriton konstruktori
     public Book() {
@@ -42,6 +51,7 @@ public class Book {
         this.publicationYear = 0;
         this.isbn = 0;
         this.price = 0;
+        this.category = new Category();
     }
 
     //setterit
@@ -63,6 +73,9 @@ public class Book {
     public void setPrice(Integer price) {
         this.price = price;
     }
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 
     //getterit
     public Long getId(){
@@ -83,7 +96,10 @@ public class Book {
     public Integer getPrice() {
         return price;
     }
-    
+    public Category getCategory() {
+        return category;
+    }
+
     @Override
     public String toString() {
         return "Book [id=" + id + ", title=" + title + ", author=" + author + ", publicationYear=" + publicationYear

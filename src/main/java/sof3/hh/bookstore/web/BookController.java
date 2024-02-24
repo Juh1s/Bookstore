@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import sof3.hh.bookstore.domain.Book;
 import sof3.hh.bookstore.domain.BookRepository;
+import sof3.hh.bookstore.domain.CategoryRepository;
 
 @Controller
 public class BookController {
@@ -24,6 +25,8 @@ public class BookController {
 
     @Autowired
     private BookRepository bookRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
     
     // http://localhost:8080/booklist
 
@@ -39,6 +42,7 @@ public class BookController {
     @RequestMapping(value = "/addbook", method = RequestMethod.GET)
     public String getAddBook(Model model) {
         model.addAttribute("book", new Book()); // "tyhjä" kirja-olio
+        model.addAttribute("categories", categoryRepository.findAll());
         return "addbook";   // addbook.html
     }
 

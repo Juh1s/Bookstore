@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+    <title>Categorylist</title>
+</head>
+<body>
+    <h1>Category</h1>
+	<p>
+	<table class="table table-striped">
+		<tr>
+			<th>Name</th>
+		</tr>
+
+		<tr th:each="category : ${categories}">
+			<td th:text="${category.name}">name</td>
+		</tr>
+	</table>
+	</p>
+	<p><a th:href="@{/addcategory}" class="btn btn-success">Add Category</a></p>
+</body>
+</html>

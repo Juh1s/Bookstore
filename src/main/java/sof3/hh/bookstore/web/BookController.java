@@ -42,17 +42,6 @@ public class BookController {
         return "booklist";  // booklist.html
     }
 
-    // näytä kaikki kirjat
-    @RequestMapping(value = "/books", method = RequestMethod.GET)
-    public @ResponseBody List<Book> bookListRest() {
-        return (List<Book>) bookRepository.findAll();
-    }
-    
-    @RequestMapping(value="/books/{id}", method = RequestMethod.GET)
-    public @ResponseBody Optional<Book> findBookRest(@PathVariable("id") Long bookId) {	
-    	return bookRepository.findById(bookId);
-    }      
-
     // tyhjän kirjalomakkeen muodostaminen
     @RequestMapping(value = "/addbook", method = RequestMethod.GET)
     public String getAddBook(Model model) {

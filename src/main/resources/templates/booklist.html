@@ -9,6 +9,11 @@
 <body>
     
 	<h1>Books</h1>
+	<h1>Hello <span sec:authentication="name"></span>!</h1>
+	
+	<form th:action="@{/logout}" method="post">
+		<input type="submit" value="Sign Out" class="btn btn-danger"/>
+	</form>
 	<p>
 	<table class="table table-striped">
 		<tr>
@@ -25,7 +30,8 @@
 			<td th:text="${book.isbn}">isbn</td>
 			<td th:text="${book.publicationYear}">year</td>
 			<td th:text="${book.category.name}">category</td>
-            <td><a th:href="@{/delete/{id}(id=${book.id})}" class="btn btn-danger">Delete</a></td>
+			<td sec:authorize="hasRole('ADMIN')"><a
+				th:href="@{/delete/{id}(id=${book.id})}">Delete</a></td>
             <td><a th:href="@{/edit/{id}(id=${book.id})}">Edit</a></td>
 		</tr>
 	</table>

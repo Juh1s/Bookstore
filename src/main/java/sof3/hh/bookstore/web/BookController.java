@@ -1,7 +1,7 @@
 package sof3.hh.bookstore.web;
 
-import java.util.List;
-import java.util.Optional;
+//import java.util.List;
+//import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+//import org.springframework.web.bind.annotation.ResponseBody;
 
 import sof3.hh.bookstore.domain.Book;
 import sof3.hh.bookstore.domain.BookRepository;
@@ -56,6 +56,12 @@ public class BookController {
         // tallennetaan yhden uuden kirjan tiedot tietokantaan
         bookRepository.save(book);
         return "redirect:/booklist";    // booklist.html
+    }
+
+    // login
+    @RequestMapping(value="/login")
+    public String login() {	
+        return "login";
     }
 
     // poistetaan valittu kirja listasta

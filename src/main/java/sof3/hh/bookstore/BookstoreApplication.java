@@ -12,6 +12,8 @@ import sof3.hh.bookstore.domain.Book;
 import sof3.hh.bookstore.domain.BookRepository;
 import sof3.hh.bookstore.domain.Category;
 import sof3.hh.bookstore.domain.CategoryRepository;
+import sof3.hh.bookstore.domain.User;
+import sof3.hh.bookstore.domain.UserRepository;
 
 @SpringBootApplication
 public class BookstoreApplication {
@@ -23,7 +25,7 @@ public class BookstoreApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(BookRepository bookRepository, CategoryRepository categoryRepository) {
+	public CommandLineRunner demo(BookRepository bookRepository, CategoryRepository categoryRepository, UserRepository userRepository) {
 		return (args) -> {
 
 			Category category1 = new Category("Scifi");
@@ -39,6 +41,12 @@ public class BookstoreApplication {
 
 			bookRepository.save(book1);
 			bookRepository.save(book2);
+
+			User user1 = new User("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "email1", "USER");
+			User user2 = new User("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "email2", "ADMIN");
+
+			userRepository.save(user1);
+			userRepository.save(user2);
 
 			log.info("fetch all categories");
 			for (Category category : categoryRepository.findAll()) {

@@ -11,10 +11,11 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
 
 
 @Configuration  
@@ -28,6 +29,7 @@ public class WebSecurityConfig {
 		http
         .authorizeHttpRequests(authorize -> authorize
 			.requestMatchers("/", "/index").permitAll()
+            .requestMatchers(antMatcher("/delete/**")).hasRole("ADMIN")
 			.anyRequest().authenticated()
 		)
 		.formLogin(formlogin -> formlogin

@@ -22,7 +22,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import sof3.hh.bookstore.web.UserDetailServiceImpl;
 
 import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
-
+import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
 
 @Configuration  
 @EnableWebSecurity
@@ -39,8 +39,16 @@ public class WebSecurityConfig {
         .authorizeHttpRequests(authorize -> authorize
 			.requestMatchers("/", "/index").permitAll()
             .requestMatchers(antMatcher("/delete/**")).hasRole("ADMIN")
+            .requestMatchers(toH2Console()).permitAll()
 			.anyRequest().authenticated()
 		)
+        .csrf(csrf -> csrf
+             .ignoringRequestMatchers(toH2Console())
+        )
+        .headers(headers -> headers
+            .frameOptions(frameoptions -> frameoptions
+                     .disable())
+        )
 		.formLogin(formlogin -> formlogin
 			.loginPage("/login")
             .defaultSuccessUrl("/booklist", true)
